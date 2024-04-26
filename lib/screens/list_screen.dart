@@ -8,8 +8,6 @@ class ListScreen extends StatefulWidget {
 
 class _ListScreenState extends State<ListScreen> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-  // Function to show dialog for adding new items
   void addItemToList() async {
     TextEditingController itemController = TextEditingController();
     showDialog(
@@ -31,10 +29,9 @@ class _ListScreenState extends State<ListScreen> {
               TextButton(
                 onPressed: () {
                   if (itemController.text.isNotEmpty) {
-                    _firestore.collection('lists').add({
-                      'name': itemController.text,
-                      'items': [] // Assuming structure, update accordingly
-                    });
+                    _firestore
+                        .collection('lists')
+                        .add({'name': itemController.text, 'items': []});
                     Navigator.of(context).pop();
                   }
                 },
@@ -65,7 +62,6 @@ class _ListScreenState extends State<ListScreen> {
                     title: Text(item['name']),
                     subtitle: Text('Items: ${item['items'].join(', ')}'),
                     onTap: () {
-                      // Implement onTap logic to navigate to a detailed view or editing interface
                       Navigator.push(
                           context,
                           MaterialPageRoute(

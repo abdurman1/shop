@@ -33,9 +33,7 @@ class SignInScreen extends StatelessWidget {
                   password: passwordController.text,
                 );
                 Navigator.of(context).pushReplacementNamed('/list');
-              } catch (e) {
-                // Handle errors here
-              }
+              } catch (e) {}
             },
             child: Text('Sign In'),
           ),
